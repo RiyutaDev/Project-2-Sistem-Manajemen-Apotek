@@ -164,6 +164,9 @@ input.type = input.type === "password" ? "text" : "password";
     <?php endif; ?>
 </script>
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> fbf643eca0c69b9e160e869d016f9e562320807c
 </body>
 </html>

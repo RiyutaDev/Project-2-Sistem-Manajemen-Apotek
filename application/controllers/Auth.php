@@ -33,7 +33,10 @@ class Auth extends CI_Controller {
 
         if ($this->form_validation->run() === FALSE) {
             $this->session->set_flashdata('error', validation_errors());
+<<<<<<< HEAD
            
+=======
+>>>>>>> fbf643eca0c69b9e160e869d016f9e562320807c
             redirect('auth');
         }
 
@@ -74,12 +77,20 @@ class Auth extends CI_Controller {
         } elseif($user->role_id == 2){
             redirect('kasir'); // kasir
         } elseif($user->role_id == 3){
+<<<<<<< HEAD
             redirect('User'); // manajer
         } else {
             redirect('auth');
         }
      $this->session->set_flashdata('success', 'Login berhasil.');}
 
+=======
+            redirect('dashboard'); // manajer
+        } else {
+            redirect('auth');
+        }
+    }
+>>>>>>> fbf643eca0c69b9e160e869d016f9e562320807c
 
     // =========================
     // ROLE NAME
@@ -100,9 +111,16 @@ class Auth extends CI_Controller {
 
 public function process_register()
 {
+<<<<<<< HEAD
     $this->form_validation->set_rules('nama', 'Nama Lengkap', 'required|trim');
     $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[users.email]');
     $this->form_validation->set_rules('password', 'Password', 'required|min_length[6]');
+=======
+    // Validasi input
+    $this->form_validation->set_rules('nama', 'Nama Lengkap', 'required|trim');
+    $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[users.email]');
+    $this->form_validation->set_rules('password', 'Password', 'required|min_length[4]');
+>>>>>>> fbf643eca0c69b9e160e869d016f9e562320807c
 
     if ($this->form_validation->run() == FALSE) {
         $this->load->view('auth/register');
@@ -112,12 +130,17 @@ public function process_register()
 
         $data = [
             'nama'       => htmlspecialchars($nama_user),
+<<<<<<< HEAD
             'email'      => strtolower(htmlspecialchars($email_user)), // 👈 lowercase untuk konsistensi
+=======
+            'email'      => htmlspecialchars($email_user),
+>>>>>>> fbf643eca0c69b9e160e869d016f9e562320807c
             'password'   => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
             'role_id'    => 3, 
             'created_at' => date('Y-m-d H:i:s')
         ];
 
+<<<<<<< HEAD
         // ✅ INSERT KE DATABASE (INI YANG TADI HILANG)
         $this->db->insert('users', $data);
         
@@ -128,6 +151,16 @@ public function process_register()
             $this->session->set_flashdata('error', 'Registrasi Gagal! Email mungkin sudah terdaftar.');
         }
         redirect('auth');
+=======
+        // Simpan ke database
+        if ($this->db->affected_rows() > 0) { // Cek apakah data benar-benar masuk
+            $this->_sendEmail($email_user, $nama_user);
+            $this->session->set_flashdata('success', 'Registrasi Berhasil! Silakan Login.');
+            } else {
+                $this->session->set_flashdata('error', 'Registrasi Gagal!');
+            }
+            redirect('auth');
+>>>>>>> fbf643eca0c69b9e160e869d016f9e562320807c
     }
 }
 

@@ -19,12 +19,15 @@ class User extends CI_Controller {
         }
     }
 
+<<<<<<< HEAD
     // test halamm users
     public function index(){
         $this->load->view('user/template/topbar');
         $this->load->view('user/dashboard');
     }
 
+=======
+>>>>>>> fbf643eca0c69b9e160e869d016f9e562320807c
     /**
      * Menampilkan halaman profil pengguna yang sedang login.
      */
