@@ -33,21 +33,17 @@ class Auth extends CI_Controller {
 
         if ($this->form_validation->run() === FALSE) {
             $this->session->set_flashdata('error', validation_errors());
-<<<<<<< HEAD
-           
-=======
->>>>>>> fbf643eca0c69b9e160e869d016f9e562320807c
             redirect('auth');
         }
 
         $email    = strtolower(trim($this->input->post('email', TRUE)));
         $password = $this->input->post('password', TRUE);
 
-       $user = $this->db
+        $user = $this->db
             ->where('email', $email)
             ->get('users')
             ->row();
-            
+
         if (!$user) {
             $this->session->set_flashdata('error', 'Email tidak ditemukan');
             redirect('auth');
@@ -71,26 +67,19 @@ class Auth extends CI_Controller {
             'role'      => $role_name
         ]);
 
+        $this->session->set_flashdata('success', 'Login berhasil.');
+
         // REDIRECT ROLE
         if($user->role_id == 1){
             redirect('dashboard'); // admin
         } elseif($user->role_id == 2){
-            redirect('kasir'); // kasir
+            redirect('manajer'); // manajer
         } elseif($user->role_id == 3){
-<<<<<<< HEAD
-            redirect('User'); // manajer
-        } else {
-            redirect('auth');
-        }
-     $this->session->set_flashdata('success', 'Login berhasil.');}
-
-=======
-            redirect('dashboard'); // manajer
+            redirect('user'); // user
         } else {
             redirect('auth');
         }
     }
->>>>>>> fbf643eca0c69b9e160e869d016f9e562320807c
 
     // =========================
     // ROLE NAME
@@ -98,104 +87,87 @@ class Auth extends CI_Controller {
     private function getRoleName($role_id){
         switch($role_id){
             case 1: return 'admin';
-            case 2: return 'kasir';
-            case 3: return 'manajer';
+            case 2: return 'manajer';
+            case 3: return 'user';
             default: return 'unknown';
         }
     }
-   public function register()
-{
-    $data['title'] = 'Register';
-    $this->load->view('auth/register', $data);
-}
 
-public function process_register()
-{
-<<<<<<< HEAD
-    $this->form_validation->set_rules('nama', 'Nama Lengkap', 'required|trim');
-    $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[users.email]');
-    $this->form_validation->set_rules('password', 'Password', 'required|min_length[6]');
-=======
-    // Validasi input
-    $this->form_validation->set_rules('nama', 'Nama Lengkap', 'required|trim');
-    $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[users.email]');
-    $this->form_validation->set_rules('password', 'Password', 'required|min_length[4]');
->>>>>>> fbf643eca0c69b9e160e869d016f9e562320807c
+    // =========================
+    // REGISTER PAGE
+    // =========================
+    public function register(){
+        $data['title'] = 'Register';
+        $this->load->view('auth/register', $data);
+    }
 
-    if ($this->form_validation->run() == FALSE) {
-        $this->load->view('auth/register');
-    } else {
-        $email_user = $this->input->post('email', TRUE);
-        $nama_user  = $this->input->post('nama', TRUE);
+    // =========================
+    // PROCESS REGISTER
+    // =========================
+    public function process_register(){
 
-        $data = [
-            'nama'       => htmlspecialchars($nama_user),
-<<<<<<< HEAD
-            'email'      => strtolower(htmlspecialchars($email_user)), // 👈 lowercase untuk konsistensi
-=======
-            'email'      => htmlspecialchars($email_user),
->>>>>>> fbf643eca0c69b9e160e869d016f9e562320807c
-            'password'   => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
-            'role_id'    => 3, 
-            'created_at' => date('Y-m-d H:i:s')
-        ];
+        $this->form_validation->set_rules('nama', 'Nama Lengkap', 'required|trim');
+        $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[users.email]');
+        $this->form_validation->set_rules('password', 'Password', 'required|min_length[6]');
 
-<<<<<<< HEAD
-        // ✅ INSERT KE DATABASE (INI YANG TADI HILANG)
-        $this->db->insert('users', $data);
-        
-        if ($this->db->affected_rows() > 0) {
-            $this->_sendEmail($email_user, $nama_user);
-            $this->session->set_flashdata('success', 'Registrasi Berhasil! Silakan Login.');
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('auth/register');
         } else {
-            $this->session->set_flashdata('error', 'Registrasi Gagal! Email mungkin sudah terdaftar.');
-        }
-        redirect('auth');
-=======
-        // Simpan ke database
-        if ($this->db->affected_rows() > 0) { // Cek apakah data benar-benar masuk
-            $this->_sendEmail($email_user, $nama_user);
-            $this->session->set_flashdata('success', 'Registrasi Berhasil! Silakan Login.');
+
+            $email_user = strtolower($this->input->post('email', TRUE));
+            $nama_user  = $this->input->post('nama', TRUE);
+
+            $data = [
+                'nama'       => htmlspecialchars($nama_user),
+                'email'      => htmlspecialchars($email_user),
+                'password'   => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
+                'role_id'    => 3,
+                'created_at' => date('Y-m-d H:i:s')
+            ];
+
+            // INSERT KE DATABASE
+            $this->db->insert('users', $data);
+
+            if ($this->db->affected_rows() > 0) {
+                $this->_sendEmail($email_user, $nama_user);
+                $this->session->set_flashdata('success', 'Registrasi Berhasil! Silakan Login.');
             } else {
                 $this->session->set_flashdata('error', 'Registrasi Gagal!');
             }
+
             redirect('auth');
->>>>>>> fbf643eca0c69b9e160e869d016f9e562320807c
+        }
     }
-}
 
-private function _sendEmail($to_email, $nama)
-{
-    // Konfigurasi SMTP (Contoh menggunakan Gmail)
-    $config = [
-        'protocol'  => 'smtp',
-        'smtp_host' => 'ssl://smtp.googlemail.com',
-        'smtp_user' => 'sayyidabdul991@gmail.com', // Email pengirim
-        'smtp_pass' => 'hghq cvsb efct ervq',      // App Password dari Google
-        'smtp_port' => 465,
-        'mailtype'  => 'html',
-        'charset'   => 'utf-8',
-        'newline'   => "\r\n"
-    ];
+    // =========================
+    // SEND EMAIL
+    // =========================
+    private function _sendEmail($to_email, $nama)
+    {
+        $config = [
+            'protocol'  => 'smtp',
+            'smtp_host' => 'ssl://smtp.googlemail.com',
+            'smtp_user' => 'sayyidabdul991@gmail.com',
+            'smtp_pass' => 'hghq cvsb efct ervq',
+            'smtp_port' => 465,
+            'mailtype'  => 'html',
+            'charset'   => 'utf-8',
+            'newline'   => "\r\n"
+        ];
 
-    $this->load->library('email', $config);
-    $this->email->initialize($config);
-    
-    // token akan dibautkan disini mau vertif email atau send otp
+        $this->load->library('email', $config);
+        $this->email->initialize($config);
 
-    $this->email->from('no-reply@apotekanda.com', 'Sistem Manajemen Apotek');
-    $this->email->to($to_email);
-    $this->email->subject('Konfirmasi Registrasi Akun');
-    $this->email->message("Selamat <b>$nama</b>, akun Anda di Sistem Manajemen Apotek telah berhasil dibuat.");
+        $this->email->from('no-reply@apotekanda.com', 'Sistem Manajemen Apotek');
+        $this->email->to($to_email);
+        $this->email->subject('Konfirmasi Registrasi Akun');
+        $this->email->message("Selamat <b>$nama</b>, akun Anda berhasil dibuat.");
 
-    if ($this->email->send()) {
-        return true;
-    } else {
-        echo $this->email->print_debugger();
-        die;
+        if (!$this->email->send()) {
+            echo $this->email->print_debugger();
+            die;
+        }
     }
-}
-
 
     // =========================
     // LOGOUT

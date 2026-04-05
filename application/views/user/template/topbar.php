@@ -1,97 +1,110 @@
-<!doctype html>
-<html lang="id" class="h-full">
- <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Toko Header Footer</title>
-  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
-  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
-  <script src="/_sdk/element_sdk.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body { height: 100%; }
-    body { font-family: 'Nunito Sans', sans-serif; }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Header Tokopedia - Beneran Bener</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        tokped: '#03AC0E', // Warna hijau Tokopedia
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-[#F3F4F5]">
 
-    .search-box:focus-within {
-      box-shadow: 0 0 0 2px #03AC0E;
-    }
+<header class="w-full sticky top-0 z-50 bg-white border-b shadow-sm" style="border-color: #E5E7E9;">
+    <!-- <div class="hidden lg:block bg-[#F3F4F5] py-1.5 px-6 md:px-16">
+        <div class="max-w-[1200px] mx-auto flex justify-between items-center text-[11px] text-[#6D7588]">
+            <div class="flex gap-5">
+                <a href="#" class="hover:text-tokped">Tentang Toko</a>
+                <a href="#" class="hover:text-tokped">Mitra Toko</a>
+                <a href="#" class="hover:text-tokped">Mulai Berjualan</a>
+                <a href="#" class="hover:text-tokped">Bantuan</a>
+            </div>
+            <a href="#" class="flex items-center gap-1.5 hover:text-tokped">
+                <i data-lucide="smartphone" class="w-3 h-3"></i> Download App
+            </a>
+        </div>
+    </div> -->
 
-    .nav-item {
-      transition: all 0.2s ease;
-    }
-    .nav-item:hover {
-      transform: translateY(-2px);
-    }
 
-    .footer-link {
-      transition: color 0.2s ease, padding-left 0.2s ease;
-    }
-    .footer-link:hover {
-      padding-left: 4px;
-    }
+    <div class="w-full px-4 md:px-16 py-3 bg-white">
+        <div class="max-w-[1200px] mx-auto flex items-center gap-6">
+            
+            <a href="#" class="flex-shrink-0 flex items-center gap-2 group decoration-none">
+                <div class="w-9 h-9 rounded-xl flex items-center justify-center shadow-sm" style="background-color: #03AC0E;">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+                        <line x1="3" y1="6" x2="21" y2="6" />
+                        <path d="M16 10a4 4 0 0 1-8 0" />
+                    </svg>
+                </div>
+                <div class="hidden xl:block leading-tight">
+                    <span class="block text-lg font-extrabold tracking-tight" style="color: #03AC0E;">Bayur Farma</span>
+                </div>
+            </a>
 
-    .promo-banner {
-      animation: slideIn 0.5s ease-out;
-    }
+            <button class="hidden lg:block text-sm font-medium text-[#6D7588] hover:text-tokped transition">
+                Kategori
+            </button>
 
-    @keyframes slideIn {
-      from { transform: translateY(-100%); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
+            <div class="flex-1 max-w-2xl relative group">
+                <div class="flex items-center border rounded-lg h-10 px-3 bg-white transition-all focus-within:border-tokped overflow-hidden shadow-inner" style="border-color: #E5E7E9;">
+                    <i data-lucide="search" class="text-gray-400 group-focus-within:text-tokped" style="width:18px;height:18px;"></i>
+                    <input type="text" placeholder="Cari obat, vitamin, atau alat kesehatan..." class="w-full px-3 text-sm outline-none text-[#31353B] placeholder-gray-400 bg-transparent">
+                    <button class="hidden md:block px-4 py-1.5 text-xs font-bold text-white rounded-md ml-2" style="background-color: #03AC0E;">Cari</button>
+                </div>
+                <div class="hidden lg:flex gap-4 mt-1.5 px-1.5">
+                    <a href="#" class="text-[11px] text-[#6D7588] hover:text-tokped">Masker Medis</a>
+                    <a href="#" class="text-[11px] text-[#6D7588] hover:text-tokped">Vitamin C</a>
+                    <a href="#" class="text-[11px] text-[#6D7588] hover:text-tokped">Imboost</a>
+                    <a href="#" class="text-[11px] text-[#6D7588] hover:text-tokped">Sanitizer</a>
+                </div>
+            </div>
 
-    .icon-btn {
-      transition: background 0.2s ease, transform 0.15s ease;
-    }
-    .icon-btn:hover {
-      transform: scale(1.1);
-    }
-    .icon-btn:active {
-      transform: scale(0.95);
-    }
+            <div class="flex items-center gap-2 md:gap-4">
+    <div class="flex items-center gap-1 border-r pr-3" style="border-color: #E5E7E9;">
+        <div class="relative p-2 cursor-pointer rounded-lg hover:bg-gray-100 transition group">
+            <i data-lucide="shopping-cart" class="text-gray-600 w-5 h-5 group-hover:text-tokped"></i>
+            <span class="absolute top-1 right-1 min-w-[16px] h-4 px-1 rounded-full text-white text-[9px] font-bold flex items-center justify-center shadow-sm" style="background-color: #EF144A;">3</span>
+        </div>
+        
+        <button class="p-2 rounded-lg hover:bg-gray-100 text-gray-600 hover:text-tokped transition">
+            <i data-lucide="bell" class="w-5 h-5"></i>
+        </button>
 
-    .category-pill {
-      transition: all 0.2s ease;
-    }
-    .category-pill:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
-
-    .mobile-nav-item {
-      transition: color 0.2s ease;
-    }
-  </style>
-  <style>body { box-sizing: border-box; }</style>
-  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
- </head>
- <body class="h-full">
-  <div id="app-wrapper" class="w-full h-full flex flex-col overflow-auto" style="background-color: #F0F3F7;"><!-- Promo Banner -->
-   <div id="promo-banner" class="promo-banner w-full text-center py-1.5 text-xs font-semibold tracking-wide" style="background-color: #03AC0E; color: #FFFFFF;"><span id="promo-text">🚚 Gratis Ongkir Tanpa Batas — Belanja Sekarang!</span>
-   </div><!-- Header -->
-   <header class="w-full sticky top-0 z-50 shadow-md" style="background-color: #FFFFFF;"><!-- Top Header -->
-    <div class="w-full px-4 md:px-8 lg:px-16 py-3">
-     <div class="flex items-center gap-3 md:gap-6 max-w-7xl mx-auto"><!-- Logo --> <a href="#" id="store-name-link" class="flex-shrink-0 flex items-center gap-2" onclick="event.preventDefault()">
-       <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background-color: #03AC0E;">
-        <svg width="20" height="20" viewbox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" /> <line x1="3" y1="6" x2="21" y2="6" /> <path d="M16 10a4 4 0 0 1-8 0" />
-        </svg>
-       </div><span id="store-name" class="hidden md:block text-lg font-extrabold" style="color: #03AC0E;">Apotek Belanja Bayur Farma</span> </a> <!-- Category Button (Desktop) --> <button class="hidden lg:flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-semibold border-2 hover:bg-gray-50 transition" style="border-color: #E0E0E0; color: #333333;" onclick="event.preventDefault()"> <i data-lucide="layout-grid" style="width:16px;height:16px;"></i> Kategori </button> <!-- Search Bar -->
-      <div class="flex-1 relative">
-       <div class="search-box flex items-center rounded-lg border-2 overflow-hidden transition-all" style="border-color: #E0E0E0; background-color: #FFFFFF;">
-        <div class="pl-3 flex items-center" style="color: #9E9E9E;"><i data-lucide="search" style="width:18px;height:18px;"></i>
-        </div><input id="search-input" type="text" placeholder="Cari di TokoKu" class="w-full py-2.5 px-3 text-sm outline-none" style="color: #333333; background: transparent;"> <button class="px-4 py-2.5 text-sm font-bold text-white flex-shrink-0 hover:opacity-90 transition" style="background-color: #03AC0E;"> Cari </button>
-       </div>
-      </div><!-- Action Icons -->
-      <div class="flex items-center gap-1 md:gap-2"><!-- Cart --> <button class="icon-btn relative p-2 rounded-full hover:bg-gray-100" style="color: #555555;" aria-label="Keranjang"> <i data-lucide="shopping-cart" style="width:22px;height:22px;"></i> <span class="absolute -top-0.5 -right-0.5 w-5 h-5 rounded-full text-white text-[10px] font-bold flex items-center justify-center" style="background-color: #F94D63;">3</span> </button> <!-- Notifications --> <button class="icon-btn hidden md:flex relative p-2 rounded-full hover:bg-gray-100" style="color: #555555;" aria-label="Notifikasi"> <i data-lucide="bell" style="width:22px;height:22px;"></i> <span class="absolute -top-0.5 -right-0.5 w-5 h-5 rounded-full text-white text-[10px] font-bold flex items-center justify-center" style="background-color: #F94D63;">5</span> </button> <!-- Chat --> <button class="icon-btn hidden md:flex p-2 rounded-full hover:bg-gray-100" style="color: #555555;" aria-label="Chat"> <i data-lucide="message-circle" style="width:22px;height:22px;"></i> </button> <!-- Divider -->
-       <div class="hidden md:block w-px h-6 mx-1" style="background-color: #E0E0E0;"></div><!-- User --> <button class="icon-btn hidden md:flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-gray-100 transition" style="color: #555555;">
-        <div class="w-7 h-7 rounded-full flex items-center justify-center" style="background-color: #E8F5E9;"><i data-lucide="user" style="width:16px;height:16px;color:#03AC0E;"></i>
-        </div><span class="text-sm font-semibold hidden lg:block" style="color: #333333;">Masuk</span> </button>
-      </div>
-     </div>
-    </div><!-- Category Bar (Desktop) -->
-    <div class="hidden md:block w-full border-t px-4 md:px-8 lg:px-16 py-2" style="border-color: #F0F0F0;">
-     <div class="flex items-center gap-2 max-w-7xl mx-auto overflow-x-auto no-scrollbar"><a href="#" onclick="event.preventDefault()" class="category-pill flex-shrink-0 px-3 py-1.5 rounded-full text-xs font-semibold" style="background-color: #E8F5E9; color: #03AC0E;">🔥 Promo Hari Ini</a> <a href="#" onclick="event.preventDefault()" class="category-pill flex-shrink-0 px-3 py-1.5 rounded-full text-xs font-semibold" style="background-color: #F5F5F5; color: #555555;">Elektronik</a> <a href="#" onclick="event.preventDefault()" class="category-pill flex-shrink-0 px-3 py-1.5 rounded-full text-xs font-semibold" style="background-color: #F5F5F5; color: #555555;">Fashion Pria</a> <a href="#" onclick="event.preventDefault()" class="category-pill flex-shrink-0 px-3 py-1.5 rounded-full text-xs font-semibold" style="background-color: #F5F5F5; color: #555555;">Fashion Wanita</a> <a href="#" onclick="event.preventDefault()" class="category-pill flex-shrink-0 px-3 py-1.5 rounded-full text-xs font-semibold" style="background-color: #F5F5F5; color: #555555;">Handphone</a> <a href="#" onclick="event.preventDefault()" class="category-pill flex-shrink-0 px-3 py-1.5 rounded-full text-xs font-semibold" style="background-color: #F5F5F5; color: #555555;">Makanan</a> <a href="#" onclick="event.preventDefault()" class="category-pill flex-shrink-0 px-3 py-1.5 rounded-full text-xs font-semibold" style="background-color: #F5F5F5; color: #555555;">Kecantikan</a> <a href="#" onclick="event.preventDefault()" class="category-pill flex-shrink-0 px-3 py-1.5 rounded-full text-xs font-semibold" style="background-color: #F5F5F5; color: #555555;">Rumah Tangga</a>
-     </div>
+        <button class="p-2 rounded-lg hover:bg-gray-100 text-gray-600 hover:text-tokped transition">
+            <i data-lucide="mail" class="w-5 h-5"></i>
+        </button>
     </div>
-   </header><!-- Main Content Area -->
+
+    <a href="#" class="flex items-center gap-2 pl-2 group no-underline">
+        <div class="w-8 h-8 rounded-full overflow-hidden border border-gray-200 shadow-sm">
+            <img src="https://ui-avatars.com/api/?name=Sayyid+Ahmad&background=E8F5E9&color=03AC0E" alt="User Profile" class="w-full h-full object-cover">
+        </div>
+        <div class="hidden lg:block">
+            <span class="block text-sm font-bold text-[#31353B] group-hover:text-tokped transition"></span>
+        </div>
+    </a>
+</div>
+
+        </div>
+    </div>
+</header>
+<script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+      lucide.createIcons();
+    </script>
+</body>
 </html>
