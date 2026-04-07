@@ -18,6 +18,7 @@ class M_user extends CI_Model {
             ->get($this->table)
             ->row(); // Mengembalikan objek
     }
+    
 
     /**
      * PERBAIKAN: Mengambil data user berdasarkan ID untuk halaman profile.

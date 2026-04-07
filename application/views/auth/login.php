@@ -10,6 +10,7 @@
 <link href="<?= base_url('assets/vendor/fontawesome-free/css/all.min.css'); ?>" rel="stylesheet">
 <link href="<?= base_url('assets/css/sb-admin-2.min.css'); ?>" rel="stylesheet">
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <style>
 body {
     background: linear-gradient(135deg, #065f46, #10b981);
@@ -144,6 +145,26 @@ input.type = input.type === "password" ? "text" : "password";
 
 <script src="<?= base_url('assets/vendor/jquery/jquery.min.js'); ?>"></script>
 <script src="<?= base_url('assets/vendor/bootstrap/js/bootstrap.bundle.min.js'); ?>"></script>
+
+<script>
+    <?php if($this->session->flashdata('success')): ?>
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil!',
+            text: '<?= $this->session->flashdata('success'); ?>',
+            showConfirmButton: false,
+            timer: 2000
+        });
+    <?php endif; ?>
+
+    <?php if($this->session->flashdata('error')): ?>
+        Swal.fire({
+            icon: 'error',
+            title: 'Opps...',
+            text: '<?= $this->session->flashdata('error'); ?>'
+        });
+    <?php endif; ?>
+</script>
 
 </body>
 </html>
